@@ -2,12 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar(props) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const handleLinkPage = (event) => {
+    event.preventDefault();
+    props.setPage(event.target.name);
+    closeMobileMenu();
+    window.scrollTo(0, 0);
+  }
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -35,15 +41,21 @@ function Navbar() {
         </div>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li className="nav-item">
-            <a href="/#" className="nav-links" onClick={closeMobileMenu}>
+            <a 
+              href="/#" 
+              name="Home" 
+              className="nav-links" 
+              onClick={handleLinkPage}
+            >
               Home
             </a>
           </li>
           <li className="nav-item">
             <a
               href="/#"
+              name="Services"
               className="nav-links"
-              onClick={closeMobileMenu}
+              onClick={handleLinkPage}
             >
               Services
             </a>
@@ -51,8 +63,9 @@ function Navbar() {
           <li className="nav-item">
             <a
               href="/#"
+              name="Products"
               className="nav-links"
-              onClick={closeMobileMenu}
+              onClick={handleLinkPage}
             >
               Products
             </a>
@@ -61,14 +74,19 @@ function Navbar() {
           <li>
             <a
               href="/#"
+              name="SignUp"
               className="nav-links-mobile"
-              onClick={closeMobileMenu}
+              onClick={handleLinkPage}
             >
               Sign Up
             </a>
           </li>
         </ul>
-        {button && <Button buttonStyle="btn--outline">SIGN UP</Button>}
+        {button && <Button 
+            name="SignUp" 
+            buttonStyle="btn--outline" 
+            onClick={handleLinkPage}
+          >SIGN UP</Button>}
       </div>
     </nav>
   );
