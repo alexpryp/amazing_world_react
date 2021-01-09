@@ -10,7 +10,7 @@ function Navbar(props) {
   const closeMobileMenu = () => setClick(false);
   const handleLinkPage = (event) => {
     event.preventDefault();
-    props.setPage(event.target.name);
+    props.setPage(event.target.dataset.name);
     closeMobileMenu();
     window.scrollTo(0, 0);
   }
@@ -43,7 +43,7 @@ function Navbar(props) {
           <li className="nav-item">
             <a 
               href="/#" 
-              name="Home" 
+              data-name="Home"
               className="nav-links" 
               onClick={handleLinkPage}
             >
@@ -53,7 +53,7 @@ function Navbar(props) {
           <li className="nav-item">
             <a
               href="/#"
-              name="Services"
+              data-name="Services"
               className="nav-links"
               onClick={handleLinkPage}
             >
@@ -63,7 +63,7 @@ function Navbar(props) {
           <li className="nav-item">
             <a
               href="/#"
-              name="Products"
+              data-name="Products"
               className="nav-links"
               onClick={handleLinkPage}
             >
@@ -74,7 +74,7 @@ function Navbar(props) {
           <li>
             <a
               href="/#"
-              name="SignUp"
+              data-name="SignUp"
               className="nav-links-mobile"
               onClick={handleLinkPage}
             >
@@ -83,7 +83,7 @@ function Navbar(props) {
           </li>
         </ul>
         {button && <Button 
-            name="SignUp" 
+            name="SignUp"
             buttonStyle="btn--outline" 
             onClick={handleLinkPage}
           >SIGN UP</Button>}
